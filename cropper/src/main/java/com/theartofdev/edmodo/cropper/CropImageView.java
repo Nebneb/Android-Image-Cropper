@@ -175,6 +175,8 @@ public class CropImageView extends FrameLayout {
   private WeakReference<BitmapCroppingWorkerTask> mBitmapCroppingWorkerTask;
   // endregion
 
+  private boolean hasBeenCropped = false;
+
   public CropImageView(Context context) {
     this(context, null);
   }
@@ -334,6 +336,7 @@ public class CropImageView extends FrameLayout {
         new CropOverlayView.CropWindowChangeListener() {
           @Override
           public void onCropWindowChanged(boolean inProgress) {
+            hasBeenCropped = true;
             handleCropWindowChanged(inProgress, true);
             OnSetCropOverlayReleasedListener listener = mOnCropOverlayReleasedListener;
             if (listener != null && !inProgress) {
@@ -439,6 +442,13 @@ public class CropImageView extends FrameLayout {
    */
   public int getRotatedDegrees() {
     return mDegreesRotated;
+  }
+
+  /**
+   * @return true if the image has been cropped by the user.
+   */
+  public boolean hasBeenCropped() {
+    return hasBeenCropped;
   }
 
   /**

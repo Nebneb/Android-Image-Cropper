@@ -939,6 +939,13 @@ public final class CropImage {
       mOptions.cropMenuCropButtonIcon = drawableResource;
       return this;
     }
+
+
+    public ActivityBuilder setCropIsMandatory(boolean isMandatory, String warningMessage) {
+      mOptions.cropIsMandatory = isMandatory;
+      mOptions.cropIsMandatoryMsg = warningMessage;
+      return this;
+    }
   }
   // endregion
 
